@@ -86,3 +86,4 @@
         <Button Margin="256.5,10,9,10.5" Grid.Row="8" Grid.Column="1" VerticalAlignment="Center" FontSize="20" Height="52">Отправить</Button>
     </Grid>
 </Window>
+
