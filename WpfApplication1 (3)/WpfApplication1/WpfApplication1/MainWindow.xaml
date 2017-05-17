@@ -4,9 +4,22 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApplication1"
-        mc:Ignorable="d"
+        mc:Ignorable="d" 
         Title="ФОРМА ОБРАТНОЙ СВЯЗИ" Height="900" Width="700">
-    <Grid>
+
+    <Window.DataContext>
+        <local:MainWindowViewModel></local:MainWindowViewModel>
+    </Window.DataContext>
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid Background="{StaticResource ImageBrush}">
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1.5*"></ColumnDefinition>
             <ColumnDefinition Width="3*"></ColumnDefinition>
@@ -22,20 +35,27 @@
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        <TextBlock Margin="5" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" FontSize="20">Ваше имя</TextBlock>
-        <TextBox Grid.Row="0" Grid.Column="1" Margin="5"></TextBox>
-        <TextBlock Margin="5" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" FontSize="20">Email</TextBlock>
-        <TextBox Margin="5" Grid.Row="1" Grid.Column="1"></TextBox>
-        <TextBlock Margin="5" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" FontSize="20">Телефон</TextBlock>
-        <TextBlock Margin="5" Grid.Row="5" Grid.Column="0" VerticalAlignment="Center" FontSize="20" Grid.ColumnSpan="2">Описание проблемы</TextBlock>
-        <TextBox Margin="5" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2"></TextBox>
-        <TextBlock Margin="5" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" FontSize="20">Раздел</TextBlock>
-        <TextBlock Margin="5" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" FontSize="20">Категория</TextBlock>
-        <TextBlock Margin="5" Grid.Row="7" Grid.Column="0" VerticalAlignment="Center" FontSize="20">Приложить файл</TextBlock>
+        <TextBlock Margin="5" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" FontSize="20" Style="{StaticResource TextBlockStyle}">Ваше имя</TextBlock>
+        <TextBox Grid.Row="0" Grid.Column="1" Margin="5" Style="{StaticResource TextBoxStyle}"></TextBox>
+        <TextBlock Margin="5" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" FontSize="20" Style="{StaticResource TextBlockStyle}">Email</TextBlock>
+        <TextBox Margin="5" Grid.Row="1" Grid.Column="1" Style="{StaticResource TextBoxStyle}"></TextBox>
+        <TextBlock Margin="5" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" FontSize="20" Style="{StaticResource TextBlockStyle}">Телефон</TextBlock>
+        <TextBlock Margin="5" Grid.Row="5" Grid.Column="0" VerticalAlignment="Center" FontSize="20" Grid.ColumnSpan="2" Style="{StaticResource TextBlockStyle}">Описание проблемы</TextBlock>
+        <TextBox Margin="5" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource TextBoxStyle}"></TextBox>
+        <TextBlock Margin="5" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" FontSize="20" Style="{StaticResource TextBlockStyle}">Раздел</TextBlock>
+        <TextBlock Margin="5" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" FontSize="20" Style="{StaticResource TextBlockStyle}">Категория</TextBlock>
+        <TextBlock Margin="5" Grid.Row="7" Grid.Column="0" VerticalAlignment="Center" FontSize="20" Style="{StaticResource TextBlockStyle}">Приложить файл</TextBlock>
         <Grid Grid.Row="2" Grid.Column="1">
-            <TextBox Margin="5" Grid.Column="0" Grid.Row="0"></TextBox>
-            <TextBlock Margin="5" Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" FontSize="20">Дата события</TextBlock>
-            <DatePicker Margin="5" Grid.Column="2" Grid.Row="0" VerticalAlignment="Center" FontSize="20"></DatePicker>
+            <TextBox Margin="5" Grid.Column="0" Grid.Row="0" Style="{StaticResource TextBoxStyle}"></TextBox>
+            <TextBox Grid.Column="0" Grid.Row="0" Style="{StaticResource TextBoxStyle}">
+                <Binding Path="Number">
+                    <Binding.ValidationRules>
+                        <local:NumberValidationRule></local:NumberValidationRule>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox>
+            <TextBlock Margin="5" Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" FontSize="20" Style="{StaticResource TextBlockStyle}">Дата события</TextBlock>
+            <DatePicker Margin="5" Grid.Column="2" Grid.Row="0" VerticalAlignment="Center" FontSize="20" Style="{StaticResource DateStyle}"></DatePicker>
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
@@ -44,7 +64,10 @@
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
+
         </Grid>
+
+
         <Grid Grid.Row="3" Grid.Column="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="77*"></ColumnDefinition>
@@ -57,7 +80,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
-            <ComboBox Margin="5,5,4.5,4.5" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3"></ComboBox>
+            <ComboBox Margin="5,5,0,4.5" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" HorizontalAlignment="Left" Width="451" Style="{StaticResource ComboBoxStyle}"></ComboBox>
         </Grid>
         <Grid Grid.Row="4" Grid.Column="1">
             <Grid.ColumnDefinitions>
@@ -68,11 +91,11 @@
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
-            <ComboBox Margin="5,5,78,5" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"></ComboBox>
+            <ComboBox Margin="5,5,78,5" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource ComboBoxStyle}" SelectedItem="{Binding SelectedSection}" ItemsSource="{ Binding Sections}"></ComboBox>
         </Grid>
         <DockPanel Grid.Row="7" Grid.Column="1">
-            <Button Margin="5" DockPanel.Dock="Right" Width="70" FontSize="29">...</Button>
-            <TextBox Margin="5" DockPanel.Dock="Left" Width="368"></TextBox>
+            <Button Margin="5" DockPanel.Dock="Right" Width="70" FontSize="29" Style="{StaticResource ButtonStyle}">...</Button>
+            <TextBox Margin="5" DockPanel.Dock="Left" Width="368" Style="{StaticResource TextBoxStyle}"></TextBox>
         </DockPanel>
         <Grid Grid.Row="8" Grid.Column="1">
             <Grid.RowDefinitions>
@@ -83,7 +106,6 @@
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
         </Grid>
-        <Button Margin="256.5,10,9,10.5" Grid.Row="8" Grid.Column="1" VerticalAlignment="Center" FontSize="20" Height="52">Отправить</Button>
+        <Button Style="{StaticResource ButtonStyle}" Margin="256.5,10,9,10.5" Grid.Row="8" Grid.Column="1" VerticalAlignment="Center" FontSize="20" Height="52">Отправить</Button>
     </Grid>
 </Window>
-
