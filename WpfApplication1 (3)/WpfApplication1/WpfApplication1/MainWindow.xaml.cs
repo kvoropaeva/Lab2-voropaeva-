@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +24,14 @@ namespace WpfApplication1
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            
+                    MessageBox.Show("Поздравляем!", "Поздравляем!", MessageBoxButton.OK, 
+                        MessageBoxImage.Information, MessageBoxResult.None);
+          
         }
     }
 }
